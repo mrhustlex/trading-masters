@@ -1,12 +1,17 @@
 # trading-masters
 
-Scanner skills + scripts for the **greatest investors & swing/momentum traders**, each
+Scanner skills + scripts for the **greatest investors, swing traders & day traders**, each
 distilled into a layman-replicable method, a do/don't checklist, and a runnable yfinance
 (or pure-math) screen.
 
 > ⚠️ **Education only. Not financial advice.** Past performance ≠ future results.
 
-## The 9 masters
+## Two families
+
+- **Invest / Swing (hold days–years):** Buffett, Lynch, Greenblatt, Munger/Marks/Templeton/Livermore, Minervini, O'Neil, Weinstein, Darvas, Wyckoff.
+- **Day trading (intraday 1-min):** Aziz (ORB+VWAP), Brooks (Price Action), Cameron (Momentum). See the **Day-trading set** section.
+
+## The 12 masters
 
 | # | Master | Method | Skill dir | Script | Style |
 |---|---|---|---|---|---|
@@ -80,6 +85,22 @@ technical/momentum set, the rest are value/quality/judgment.)
 - See each skill's SKILL.md. Shared core: **trend + volume + tight risk, never average down,
   parabolas are exits not entries** (`detect_parabola()` flags them).
 
+## Day-trading set (intraday 1-min, separate discipline from the above)
+
+| # | Master | Method | Skill dir | Script |
+|---|---|---|---|---|
+| 10 | **Andrew Aziz** | Opening Range Breakout + VWAP + ABCD | `aziz-orb/` | `orb.py` |
+| 11 | **Al Brooks** | Pure Price Action (bar context, EMA20 pullbacks) | `brooks-priceaction/` | `priceaction.py` |
+| 12 | **Ross Cameron** | Momentum / HOD breakout + relative volume | `cameron-momentum/` | `momentum.py` |
+
+**Philosophy (all three):** trade the *first hour* on a catalyst; VWAP / EMA20 is the line
+in the sand; 1–2% risk per trade; cut fast. Differ from the swing set: they use **1-min
+bars**, never hold overnight, and react to intraday breakouts rather than daily-stage setups.
+**DO:** wait for the range/catalyst, confirm with volume+VWAP, trail tight. **DON'T:** chase
+after the move ran, hold into the close, widen stops.
+> ⚠️ yfinance free 1-min = last ~7 sessions only; for live/backtest scale you'll want a
+> paid feed (Polygon/Alpaca). Scripts fetch `period='5d'` 1-min and slice the date.
+
 ## Install
 ```bash
 pip install yfinance pandas numpy mplfinance
@@ -88,7 +109,8 @@ pip install yfinance pandas numpy mplfinance
 ## The full stack (how they fit)
 - **Value/quality (1–3):** what's worth owning long-term.
 - **Judgment (4–7):** how to think + size + behave.
-- **Timing (8–12):** exactly when to enter a momentum name.
+- **Timing — swing (8–9):** when to enter a momentum name (days–weeks).
+- **Timing — day (10–12):** intraday breakout/discipline.
 All agree: **cut losses, never average down, demand a margin of safety, be disciplined.**
 
 ## Files
@@ -101,7 +123,10 @@ skills/oneil-canslim/      SKILL.md + references/canslim.py
 skills/weinstein-stage/    SKILL.md + references/stage.py
 skills/darvas-box/         SKILL.md + references/darvas.py
 skills/wyckoff/            SKILL.md + references/wyckoff.py
-scripts/                    universe.txt + minervini_scanner.py (detect_parabola)
+skills/aziz-orb/           SKILL.md + references/orb.py (Opening Range Breakout + VWAP)
+skills/brooks-priceaction/ SKILL.md + references/priceaction.py (bar context, EMA20)
+skills/cameron-momentum/   SKILL.md + references/momentum.py (HOD breakout + rel-vol)
+scripts/                    universe.txt + minervini_scanner.py (detect_parabola) + master_screen.py
 README.md  requirements.txt  LICENSE
 ```
 
