@@ -1,66 +1,108 @@
 # trading-masters
 
-Scanner skills + scripts for the **greatest swing / momentum trading masters**, each
-distilled into a layman-replicable method and a runnable yfinance screen.
+Scanner skills + scripts for the **greatest investors & swing/momentum traders**, each
+distilled into a layman-replicable method, a do/don't checklist, and a runnable yfinance
+(or pure-math) screen.
 
 > ⚠️ **Education only. Not financial advice.** Past performance ≠ future results.
 
-## The masters included
+## The 9 masters
 
-| Master | Method | Skill | Script | The "job" |
-|---|---|---|---|---|
-| **Mark Minervini** | SEPA / VCP | `minervini-vcp-scanner` (separate repo) | `minervini_scanner.py` | The *timing* — buy VCP breakouts |
-| **William O'Neil** | CAN SLIM | `oneil-canslim/` | `canslim.py` | The *which* — strongest fundamentals + pivot breakout |
-| **Stan Weinstein** | Stage Analysis | `weinstein-stage/` | `stage.py` | The *when* — only trade Stage 2 |
-| **Nicolas Darvas** | Box Theory (+ Livermore) | `darvas-box/` | `darvas.py` | The *box* — break above box, stop below floor |
-| **Richard Wyckoff** | Accumulation/Distribution | `wyckoff/` | `wyckoff.py` | The *smart-money* read — spring = buy |
+| # | Master | Method | Skill dir | Script | Style |
+|---|---|---|---|---|---|
+| 1 | **Warren Buffett / Ben Graham** | Value + Margin of Safety | `buffett-graham/` | `value.py` | Own-the-business |
+| 2 | **Peter Lynch** | GARP / PEG ≤ 1 | `peter-lynch/` | `peg.py` | Growth-at-value |
+| 3 | **Joel Greenblatt** | Magic Formula (ROC + EY rank) | `greenblatt-magic/` | `magic.py` | Mechanical quant |
+| 4 | **Jesse Livermore** | Cut losses / pyramid (risk math) | `value-masters/` | `livermore.py` | Speculator discipline |
+| 5 | **Charlie Munger** | Mental models / invert / "Too Hard" | `value-masters/` | (checklist) | Judgment |
+| 6 | **Howard Marks** | Risk cycles / 2nd-level thinking | `value-masters/` | (checklist) | Risk psychology |
+| 7 | **John Templeton** | Buy at max pessimism / global | `value-masters/` | (checklist) | Contrarian |
+| 8 | **Mark Minervini** | SEPA / VCP breakout | `scripts/minervini_scanner.py` | (parabola-safe) | Momentum swing |
+| 9 | **William O'Neil** | CAN SLIM | `oneil-canslim/` | `canslim.py` | Momentum growth |
+| 10 | **Stan Weinstein** | Stage Analysis | `weinstein-stage/` | `stage.py` | Trend timing |
+| 11 | **Nicolas Darvas** | Box Theory | `darvas-box/` | `darvas.py` | Box breakout |
+| 12 | **Richard Wyckoff** | Accumulation/Distribution | `wyckoff/` | `wyckoff.py` | Smart-money read |
 
-**How they stack:** CAN SLIM finds the name → Weinstein confirms the stage → Minervini
-times the VCP breakout → Darvas manages the box/stop → Wyckoff reads the institution.
-All agree on the core: **trend + volume + tight risk, never average down.**
+(Counted 9 "masters" by person; Minervini/O'Neil/Weinstein/Darvas/Wyckoff are the
+technical/momentum set, the rest are value/quality/judgment.)
+
+## Each master's philosophy + DO / DON'T
+
+### 1. Buffett & Graham — Value
+- **Philosophy:** Buy a dollar of business for ~50¢ (margin of safety). Within your
+  **circle of competence**. A **durable moat** (pricing power) protects returns. Buffett's
+  evolution: *wonderful company at a fair price* > cheap mediocre company. Favourite
+  holding period = forever.
+- **DO:** demand moat + low debt + high ROE + FCF; be patient; size by conviction.
+- **DON'T:** buy what you don't understand; ignore debt; chase hot names; use leverage;
+  sell on noise.
+- *Check: `python3 buffett-graham/references/value.py AAPL KO JPM`*
+
+### 2. Peter Lynch — GARP
+- **Philosophy:** Invest in what you know. **PEG = P/E ÷ EPS growth**. PEG ≤ 1 = fair;
+  ≤ 0.5 = cheap growth. Fast growers (20–25%) at a reasonable PEG = his edge.
+- **DO:** buy familiar businesses; use PEG; let winners run.
+- **DON'T:** buy on tips; hold a decelerating story; over-diversify into names you can't track.
+- *Check: `python3 peter-lynch/references/peg.py AAPL NVDA APH`*
+
+### 3. Joel Greenblatt — Magic Formula
+- **Philosophy:** Mechanical. Rank by **ROC** (quality) + **Earnings Yield** (cheap);
+  buy lowest combined rank; hold ~1yr; rebalance. No emotion.
+- **DO:** mechanize; equal-weight 20–30; rebalance annually; ignore news.
+- **DON'T:** abandon after a bad year; mix with timing; add "favourites".
+- *Check: `python3 greenblatt-magic/references/magic.py --universe scripts/universe.txt --top 20`*
+
+### 4. Jesse Livermore — Speculator
+- **Philosophy:** Cut losses *immediately*; let winners run; **pyramid** only as it goes
+  your way (never average down); sit tight through normal corrections.
+- **DO:** size by risk; trade with the main trend; take a loss fast.
+- **DON'T:** average down; overtrade; let a loss become a disaster.
+- *Check: `python3 value-masters/references/livermore.py --account 100000 --risk 1 --entry 178 --stop 165`*
+
+### 5. Charlie Munger — Judgment
+- **Philosophy:** Invert ("avoid stupidity, not seek brilliance"); lattice of mental
+  models; "Too Hard" pile; patience; say no to most ideas.
+- **DO:** read widely; demand quality; be patient; know your limits.
+- **DON'T:** trade on tips; confuse activity with wisdom; use leverage.
+
+### 6. Howard Marks — Risk
+- **Philosophy:** Risk = chance of **permanent loss**, not volatility. Markets swing
+  euphoria↔despair; buy fearful, sell greedy. Second-level thinking.
+- **DO:** stress-test the downside; know the cycle position.
+- **DON'T:** extrapolate the recent past; follow the crowd; skip margin of safety.
+
+### 7. John Templeton — Contrarian
+- **Philosophy:** "Buy at the point of **maximum pessimism**"; global; long horizon.
+- **DO:** be brutally contrarian; look worldwide; be patient decades.
+- **DON'T:** chase yesterday's winners; fear the unknown market.
+
+### 8–12. Technical/momentum set (Minervini, O'Neil, Weinstein, Darvas, Wyckoff)
+- See each skill's SKILL.md. Shared core: **trend + volume + tight risk, never average down,
+  parabolas are exits not entries** (`detect_parabola()` flags them).
 
 ## Install
-
 ```bash
 pip install yfinance pandas numpy mplfinance
 ```
 
-## Quick start (per method)
-
-```bash
-# O'Neil
-python3 oneil-canslim/references/canslim.py NVDA APH
-python3 oneil-canslim/references/canslim.py --universe scripts/universe.txt
-
-# Weinstein
-python3 weinstein-stage/references/stage.py NVDA APH SMCI SNDK
-
-# Darvas
-python3 darvas-box/references/darvas.py NVDA APH
-
-# Wyckoff (weekly accumulation/spring)
-python3 wyckoff/references/wyckoff.py NVDA APH
-
-# Minervini (parabola-safe VCP)
-python3 scripts/minervini_scanner.py          # or import + analyze()
-python3 -c "import scanner,yfinance as yf; h=yf.Ticker('SNDK').history('1y'); c=h['Close']; m=c.rolling(200).mean().iloc[-1]; print(scanner.detect_parabola(c,m))"
-```
-
-## Common principles across all masters
-- **Cut losses fast** (7–8% hard stop). Never average down.
-- **Buy strength, not weakness** — breakouts, not falling knives.
-- **Volume confirms** the move or it's noise.
-- **Trend is your friend** until it isn't (check the stage / market).
-- **Parabolas are exits, not entries** — `detect_parabola()` flags them.
+## The full stack (how they fit)
+- **Value/quality (1–3):** what's worth owning long-term.
+- **Judgment (4–7):** how to think + size + behave.
+- **Timing (8–12):** exactly when to enter a momentum name.
+All agree: **cut losses, never average down, demand a margin of safety, be disciplined.**
 
 ## Files
 ```
+skills/buffett-graham/    SKILL.md + references/value.py
+skills/peter-lynch/       SKILL.md + references/peg.py
+skills/greenblatt-magic/   SKILL.md + references/magic.py
+skills/value-masters/      SKILL.md + references/livermore.py (Munger/Marks/Templeton/Livermore)
 skills/oneil-canslim/      SKILL.md + references/canslim.py
 skills/weinstein-stage/    SKILL.md + references/stage.py
 skills/darvas-box/         SKILL.md + references/darvas.py
 skills/wyckoff/            SKILL.md + references/wyckoff.py
-scripts/                   universe.txt, minervini_scanner.py (with detect_parabola)
-README.md
+scripts/                    universe.txt + minervini_scanner.py (detect_parabola)
+README.md  requirements.txt  LICENSE
 ```
 
 ## License
